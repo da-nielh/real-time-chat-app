@@ -18,7 +18,7 @@ body {
     width: 170px;
     height: 80px;
     padding-top: 40px;
-    margin-top: 20px;
+    margin-top: 40px;
     justify-content: space-between;
 
     img {
@@ -168,35 +168,43 @@ body {
 }
 
 /* users page */
+
+.user_wrapper {
+    padding: 40px;
+    background-color: #fff;
+    width: 20%;
+    height: 694px;
+}
+
 .users_body {
     justify-content: stretch;
 }
 
-.user_wrapper {
-    background-color: #fff;
-    border-radius: 0px;
-    width: 20%;
-    height: 575px;
-    margin-top: 0;
-}
-
 .user_logo {
     padding: 0;
-    padding: 5px 8px 0 8px;
+    padding: 5px 10px 0 10px;
     width: 4.5%;
 }
 
-.users {
-    /* padding: 25px 30px; */
-    /* background-color: red; */
+/* .users {
+    background-color: red;
+} */
+
+.users header h1 {
+    font-size: 40px;
+    color: #127369;
+}
+
+.users header {
+    padding-bottom: 30px;
 }
 
 .users header,
 .users-list a {
     display: flex;
     align-items: center;
-    /* padding-bottom: 20px; */
-    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 0px;
+    /* border-bottom: 1px solid #e6e6e6; */
     justify-content: space-between;
 }
 
@@ -216,7 +224,7 @@ body {
 }
 
 :is(.users, .users-list) .content .details {
-    color: #000;
+    color: #127369;
     margin-left: 20px;
 }
 
@@ -225,9 +233,9 @@ body {
     font-weight: 500;
 }
 
-.users header .logout {
+.users .search .logout {
     display: block;
-    background: #333;
+    background: #127369;
     color: #fff;
     outline: none;
     border: none;
@@ -277,14 +285,14 @@ body {
     cursor: pointer;
     border: none;
     background: #fff;
-    color: #333;
+    color: #127369;
     outline: none;
     border-radius: 0 5px 5px 0;
     transition: all 0.2s ease;
 }
 
 .users .search button.active {
-    background: #333;
+    background: #127369;
     color: #fff;
 }
 
@@ -292,51 +300,32 @@ body {
     content: '\f00d';
 }
 
-.users-list {
-    max-height: 350px;
-    overflow-y: auto;
-}
 
-:is(.users-list, .chat-box)::-webkit-scrollbar {
-    width: 0px;
-}
-
-.users-list a {
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    padding-right: 15px;
-    border-bottom-color: #f1f1f1;
-}
-
-.users-list a:last-child {
-    margin-bottom: 0px;
-    border-bottom: none;
-}
-
-.users-list a img {
-    height: 40px;
-    width: 40px;
-}
-
-.users-list a .details p {
-    color: #67676a;
-}
-
-.users-list a .status-dot {
-    font-size: 12px;
-    color: #468669;
-    padding-left: 10px;
-}
-
-.users-list a .status-dot.offline {
-    color: #ccc;
-}
+/* chat_content */
 
 .chat_content {
-    width: 100%;
-    height: 575PX;
-    background-color: red;
+    /* background-color: red; */
+    width: auto;
+    .chat_info {
+        /* background-color: blue; */
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+    }
 }
+
+.chat_content .circle {
+    img {
+        width: 50px;
+        height: 50px;
+        /* padding: 30px; */
+        justify-content: end;
+    }
+    background-color: red;
+    /* border-radius: 50%; */
+}
+
 
 
 /* @media screen and (max-width: 450px) {
