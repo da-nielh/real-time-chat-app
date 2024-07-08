@@ -41,6 +41,13 @@ body {
     height: 500px;
 }
 
+.wrapperr {
+    padding: 50px;
+    background-color: #fff;
+    width: 20%;
+    height: 673px;
+}
+
 .form {
     width: 300px;
     margin-left: auto;
@@ -202,9 +209,11 @@ body {
 .users-list a {
     display: flex;
     align-items: center;
-    padding-bottom: 0px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
     /* border-bottom: 1px solid #e6e6e6; */
     justify-content: space-between;
+    color: #fff !important;
 }
 
 .wrapper img {
@@ -230,6 +239,50 @@ body {
 :is(.users, .users-list) .details span {
     font-size: 18px;
     font-weight: 500;
+}
+
+:is(.users-list, .chat-box)::-webkit-scrollbar {
+    width: 0px;
+}
+
+.users-list a {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    padding-right: 15px;
+    border-bottom-color: #f1f1f1;
+}
+
+.users-list a:last-child {
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+.users-list a img {
+    height: 45px;
+    width: 45px;
+}
+
+.users-list a .details p {
+    color: rgb(190, 190, 190);
+}
+
+.users-list a .status-dot {
+    font-size: 12px;
+    color: forestgreen;
+    padding-left: 10px;
+
+}
+
+.users-list a .status-dot.offline {
+    color: #ccc;
+}
+
+:is(.users, .users-list) .content .details {
+    margin-left: 15px;
+}
+
+.users-list a {
+    padding-right: 10px;
 }
 
 .users .search .logout {

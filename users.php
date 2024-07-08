@@ -4,36 +4,47 @@
   if(!isset($_SESSION['unique_id'])){
     header("location: login.php");
   }
+
+  $unique_id = $_SESSION['unique_id'];
 ?>
 <?php include_once "header.php"; ?>
 <body>
-  <div class="wrapper user-wrapper">
+  <!-- logo section -->
+  <div class="logo user_logo">
+    <img src="./chatapp.png" alt="app logo" />
+  </div>
+
+  <!-- user section -->
+  <div class="wrapperr user-wrapper">
     <section class="users">
       <header>
-        <div class="content">
-          <?php 
-            $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-            if(mysqli_num_rows($sql) > 0){
-              $row = mysqli_fetch_assoc($sql);
-            }
-          ?>
-          <img src="php/images/<?php echo $row['img']; ?>" alt="">
-          <div class="details">
-            <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
-            <p><?php echo $row['status']; ?></p>
-          </div>
-        </div>
-        <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a>
+        <h1>Chat</h1>
       </header>
       <div class="search">
-        <span class="text">Select an user to start chat</span>
-        <input type="text" placeholder="Enter name to search...">
-        <button><i class="fas fa-search"></i></button>
+          <input type="text" placeholder="Enter name to search..." />
+          <a href="php/logout.php?logout_id=<?php echo $unique_id; ?>" class="logout">Logout</a>
+          <button><i class="fas fa-search"></i></button>
       </div>
       <div class="users-list">
-  
       </div>
     </section>
+  </div>
+
+  <!-- chat iframe section -->
+  <div class="chat_content">
+    <div class="chat_info">
+      <div class="circle">
+        <img src="./chatapp.png" alt="applogo" />
+      </div>
+      <h3>Welcome to Doot Chat App</h3>
+      <p>
+        Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aenean
+        commodo ligula eget dolor. cum sociisnatoque penatibus et
+      </p>
+      <div class="start_button">
+        <button>Get Start</button>
+      </div>
+    </div>
   </div>
 
   <script src="javascript/users.js"></script>
