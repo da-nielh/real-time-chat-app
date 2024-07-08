@@ -176,12 +176,11 @@ body {
     height: 694px;
 }
 
-.users_body {
+/* .users_body {
     justify-content: stretch;
-}
+} */
 
 .user_logo {
-    padding: 0;
     padding: 5px 10px 0 10px;
     width: 4.5%;
 }
@@ -304,30 +303,77 @@ body {
 /* chat_content */
 
 .chat_content {
-    /* background-color: red; */
-    width: auto;
+    background-color: #9AB8B5;
+    width: 70%;
     .chat_info {
-        /* background-color: blue; */
         width: 50%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10%;
+        margin-top: 20%;
+
+        .circle {
+            width: 10%;
+            padding: 5%;
+            background: #178A7E;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .circle img {
+            width: 100%;
+            height: auto;
+        }
+
+        h3 {
+            color: #10403B;
+            width: fit-content;
+            padding: 10px 0;
+            margin-top: 4%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        p {
+            text-align: center;
+            color: #10403B;
+            font-size: 17px;
+        }
+        .start_button button{
+            display: block;
+            background: #178A7E;
+            color: #fff;
+            outline: none;
+            border: none;
+            padding: 7px 65px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 4%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
 
-.chat_content .circle {
-    img {
-        width: 50px;
-        height: 50px;
-        /* padding: 30px; */
-        justify-content: end;
+
+
+@media (max-width: 968px) {
+    .chat_content {
+        display: none;
     }
-    background-color: red;
-    /* border-radius: 50%; */
+    .user_wrapper {
+        width: 80%;
+    }
 }
 
-
-
-/* @media screen and (max-width: 450px) {
-
-} */
+@media (max-width: 876px) {
+    .user_logo {
+        display: none;
+    }
+    .user_wrapper {
+        width: 100%;
+    }
+}
