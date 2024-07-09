@@ -26,28 +26,21 @@
           <button><i class="fas fa-search"></i></button>
       </div>
       <div class="users-list">
+        <ul>
+          <li><a href="#" data-url="start.php">Start</a></li>
+          <li><a href="#" data-url="chatroom.php">Chat Room</a></li>
+          <li><a href="#" data-url="profile.php">Profile</a></li>
+        </ul>
       </div>
     </section>
   </div>
 
   <!-- chat iframe section -->
-  <div class="chat_content">
-    <div class="chat_info">
-      <div class="circle">
-        <img src="./chatapp.png" alt="applogo" />
-      </div>
-      <h3>Welcome to Doot Chat App</h3>
-      <p>
-        Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. cum sociisnatoque penatibus et
-      </p>
-      <div class="start_button">
-        <button>Get Start</button>
-      </div>
-    </div>
+  <div class="iframe-container">
+    <iframe id="contentFrame" src="start.html"></iframe>
   </div>
 
   <script src="javascript/users.js"></script>
-
+  <script src="javascript/iframe-nav.js"></script>
 </body>
 </html>
