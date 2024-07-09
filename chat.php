@@ -8,7 +8,7 @@ if (!isset($_SESSION['unique_id'])) {
 <?php include_once "header.php"; ?>
 
 <body>
-  <div class="wrapper chating">
+  <div class="chating">
     <section class="chat-area">
       <header>
         <?php

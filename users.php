@@ -27,9 +27,7 @@
       </div>
       <div class="users-list">
         <ul>
-          <li><a href="#" data-url="start.php">Start</a></li>
-          <li><a href="#" data-url="chatroom.php">Chat Room</a></li>
-          <li><a href="#" data-url="profile.php">Profile</a></li>
+          <li><a href="#" data-url="https://www.example.com">chat</a></li>
         </ul>
       </div>
     </section>
