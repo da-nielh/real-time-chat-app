@@ -25,7 +25,7 @@
       <img src="./chatapp.png" alt="app logo" />
       <h1>Chat</h1>
     </div>
-    <div class="wrapper">
+    <div class="wrapper login_wrapper">
       <section class="form login">
         <div class="header login_header">
           <h1>Welcome Back !</h1>

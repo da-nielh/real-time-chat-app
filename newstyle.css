@@ -50,6 +50,7 @@
 .preloader__logo h1 {
     font-size: 45px;
     color: #fff;
+    margin-left: -10px;
 }
 
 body {
@@ -84,6 +85,10 @@ body {
     border-radius: 16px;
     margin-top: 3%;
     width: 50%;
+}
+
+.login_wrapper {
+    margin-top: 7%;
 }
 
 .wrapperr {
