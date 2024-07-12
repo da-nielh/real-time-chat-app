@@ -33,6 +33,7 @@
     <section class="users">
       <header>
         <h1>Chat</h1>
+        <a href="edit_profile.php" class="settings-icon"><i class="fas fa-cog"></i></a>
       </header>
       <div class="search">
           <input type="text" placeholder="Enter name to search..." />
@@ -40,9 +41,6 @@
           <button><i class="fas fa-search"></i></button>
       </div>
       <div class="users-list">
-        <ul>
-          <li><a href="#" data-url="https://www.example.com">chat</a></li>
-        </ul>
       </div>
     </section>
   </div>

@@ -78,6 +78,16 @@
             />
             <i class="fas fa-eye"></i>
           </div>
+          <div class="field input">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm your password"
+              required
+            />
+            <i class="fas fa-eye"></i>
+          </div>
           <div class="field image">
             <label>Select Image</label>
             <input
@@ -88,7 +98,7 @@
             />
           </div>
           <div class="field button">
-            <input type="submit" name="submit" value="SIgn up" />
+            <input type="submit" name="submit" value="Sign up" />
           </div>
         </form>
         <div class="link">
@@ -100,5 +110,6 @@
     <script src="javascript/themes.js"></script>
     <script src="javascript/pass-show-hide.js"></script>
     <script src="javascript/signup.js"></script>
+
   </body>
 </html>
