@@ -95,7 +95,7 @@ body {
 .wrapperr {
     padding: 50px;
     background-color: #fff;
-    width: 18%;
+    width: 20%;
     height: 87vh;
 }
 
@@ -255,6 +255,9 @@ body {
 .settings-icon {
     margin-left: auto;
     color: #8AA6A3;
+    .fas {
+        font-size: 30px !important;
+    }
 }
 
 .settings-icon:hover {
@@ -414,6 +417,8 @@ body {
 }
 
 
+
+
 /* chat_content */
 
 .iframe-container {
@@ -488,8 +493,28 @@ iframe {
 .chating {
     background: #9AB8B5;
     max-width: 100%;
-    width: 100%;
+    width: 70%;
     border-radius: 0px;
+}
+
+.chating .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    .fas {
+        color: #127369;
+        display: none;
+    }
+
+    .fas:hover {
+        color: #10403B;
+    }
 }
 
 .chat-area header {
@@ -673,6 +698,12 @@ iframe {
         width: 87%;
     }
 
+    .chating .header {
+        .fas {
+            display: block;
+        }
+    }
+
 }
 
 @media (max-width: 876px) {
@@ -702,5 +733,10 @@ iframe {
     }
     .iframe-container {
         display: none;
+    }
+    .chating {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0px;
     }
 }

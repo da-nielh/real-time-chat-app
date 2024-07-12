@@ -14,9 +14,12 @@ if(mysqli_num_rows($sql) > 0){
 ?>
 <?php include_once "header.php"; ?>
 <body>
-    <div class="wrapper">
+    <div class="wrapper" style="width: 100%; margin: 0; border-radius: 0%">
         <section class="form edit-profile">
-            <header>Edit Profile</header>
+            <header>
+                <a href="users.php" class="back-icon settings-icon"><i class="fas fa-arrow-left"></i></a>
+                <h2>Edit Profile</h2>
+            </header>
             <form action="php/edit_profile.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="error-text"></div>
                 <div class="field image">
@@ -26,27 +29,36 @@ if(mysqli_num_rows($sql) > 0){
                 </div>
                 <div class="field input">
                     <label>Profile Name</label>
-                    <input type="text" name="profilename" value="<?php echo $row['ProfileName']; ?>" required>
+                    <input type="text" name="profilename" value="<?php echo $row['ProfileName']; ?>" >
                 </div>
                 <div class="field input">
                     <label>Birth Date</label>
-                    <input type="date" name="birthdate" value="<?php echo $row['BirthDate']; ?>" required>
+                    <input type="date" name="birthdate" value="<?php echo $row['BirthDate']; ?>" >
                 </div>
                 <div class="field input">
                     <label>Phone Number</label>
-                    <input type="text" name="phonenumber" value="<?php echo $row['PhoneNumber']; ?>" required>
+                    <input type="text" name="phonenumber" value="<?php echo $row['PhoneNumber']; ?>" >
                 </div>
                 <div class="field input">
                     <label>First Name</label>
-                    <input type="text" name="fname" value="<?php echo $row['fname']; ?>" required>
+                    <input type="text" name="fname" value="<?php echo $row['fname']; ?>" >
                 </div>
                 <div class="field input">
                     <label>Last Name</label>
-                    <input type="text" name="lname" value="<?php echo $row['lname']; ?>" required>
+                    <input type="text" name="lname" value="<?php echo $row['lname']; ?>" >
                 </div>
                 <div class="field input">
                     <label>Email</label>
-                    <input type="email" name="email" value="<?php echo $row['email']; ?>" required>
+                    <input type="email" name="email" value="<?php echo $row['email']; ?>" >
+                </div>
+                <div class="field input">
+                    <label>Theme</label>
+                    <input type="text" name="theme" value="<?php echo $row['theme']; ?>" >
+                </div>
+                <div class="field input">
+                    <label>Current Password</label>
+                    <input type="password" name="current_password" placeholder="Enter current password">
+                    <i class="fas fa-eye"></i>
                 </div>
                 <div class="field input">
                     <label>New Password</label>
@@ -56,10 +68,6 @@ if(mysqli_num_rows($sql) > 0){
                 <div class="field input">
                     <label>Confirm New Password</label>
                     <input type="password" name="confirm_password" placeholder="Confirm new password">
-                </div>
-                <div class="field input">
-                    <label>Theme</label>
-                    <input type="text" name="theme" value="<?php echo $row['theme']; ?>" required>
                 </div>
                 <div class="field button">
                     <input type="submit" name="submit" value="Save Changes">

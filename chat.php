@@ -8,6 +8,32 @@ if (!isset($_SESSION['unique_id'])) {
 <?php include_once "header.php"; ?>
 
 <body>
+  <!-- logo section -->
+  <div class="logo user_logo">
+    <img src="./chatapp.png" alt="app logo" />
+  </div>
+
+  <!-- user section -->
+  <div class="wrapperr user-wrapper">
+    <section class="users">
+      <header>
+        <h1>Chat</h1>
+        <a href="edit_profile.php" class="settings-icon"><i class="fas fa-cog"></i></a>
+      </header>
+      <div class="chat_search">
+        <div class="search">
+          <input type="text" placeholder="Enter name to search..." />
+          <a href="php/logout.php?logout_id=<?php echo $unique_id; ?>" class="logout" >Logout</a>
+          <button><i class="fas fa-search"></i></button>
+      </div>
+      </div>
+      
+      <div class="users-list">
+      </div>
+    </section>
+  </div>
+
+  <!-- Chat section -->
   <div class="chating">
     <section class="chat-area">
       <header>
@@ -22,9 +48,14 @@ if (!isset($_SESSION['unique_id'])) {
         ?>
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
         <img src="php/images/<?php echo $row['img']; ?>" alt="">
-        <div class="details">
-          <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+        <div class="header">
+          <div class="details">
+            <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
+            <p><?php echo $row['status']; ?></p>
+          </div>
+          <div class="right_header">
+            <a href="users.php"><i class='fas fa-user-friends' style='font-size:36px'></i></a>
+          </div>
         </div>
       </header>
       <div class="chat-box">
@@ -36,6 +67,9 @@ if (!isset($_SESSION['unique_id'])) {
       </form>
     </section>
   </div>
+
+  <script src="javascript/themes.js"></script>
+  <script src="javascript/users.js"></script>
   <script src="javascript/chat.js"></script>
 
 </body>

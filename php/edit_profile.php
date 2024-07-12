@@ -14,67 +14,92 @@ if(isset($_SESSION['unique_id'])){
     $theme = mysqli_real_escape_string($conn, $_POST['theme']);
     $new_password = mysqli_real_escape_string($conn, $_POST['new_password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+    $current_password = mysqli_real_escape_string($conn, $_POST['current_password']);
 
-    if(!empty($fname) && !empty($lname) && !empty($email) && !empty($profileName) && !empty($birthDate) && !empty($phoneNumber) && !empty($theme)){
+    // Check if current password matches with the stored password
+    $password_check_query = "SELECT * FROM users WHERE unique_id = '{$unique_id}'";
+    $result = mysqli_query($conn, $password_check_query);
+    $user = mysqli_fetch_assoc($result);
+    $stored_password = $user['password'];
+    
+    if(!password_verify($current_password, $stored_password)) {
+        echo "Current password is incorrect.";
+        exit;
+    }
+
+    // Build the update query dynamically based on provided data
+    $update_query = "UPDATE users SET ";
+
+    if(!empty($fname)) {
+        $update_query .= "fname = '{$fname}', ";
+    }
+
+    if(!empty($lname)) {
+        $update_query .= "lname = '{$lname}', ";
+    }
+
+    if(!empty($email)) {
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $sql = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}' AND unique_id != '{$unique_id}'");
-            if(mysqli_num_rows($sql) > 0){
-                echo "$email - This email already exists!";
-            } else {
-                $update_query = "UPDATE users SET fname = '{$fname}', lname = '{$lname}', email = '{$email}', ProfileName = '{$profileName}', BirthDate = '{$birthDate}', PhoneNumber = '{$phoneNumber}', theme = '{$theme}'";
-                
-                if(!empty($new_password) && !empty($confirm_password)){
-                    if($new_password === $confirm_password){
-                        $encrypt_pass = md5($new_password);
-                        $update_query .= ", password = '{$encrypt_pass}'";
-                    } else {
-                        echo "Passwords do not match!";
-                        exit;
-                    }
-                }
-
-                if(isset($_FILES['image'])){
-                    $img_name = $_FILES['image']['name'];
-                    $img_type = $_FILES['image']['type'];
-                    $tmp_name = $_FILES['image']['tmp_name'];
-
-                    $img_explode = explode('.', $img_name);
-                    $img_ext = end($img_explode);
-
-                    $extensions = ["jpeg", "png", "jpg"];
-                    if(in_array($img_ext, $extensions) === true){
-                        $types = ["image/jpeg", "image/jpg", "image/png"];
-                        if(in_array($img_type, $types) === true){
-                            $time = time();
-                            $new_img_name = $time.$img_name;
-                            if(move_uploaded_file($tmp_name, "images/".$new_img_name)){
-                                $update_query .= ", img = '{$new_img_name}'";
-                            } else {
-                                echo "Failed to move the uploaded file.";
-                                exit;
-                            }
-                        } else {
-                            echo "Please upload an image file - jpeg, png, jpg";
-                            exit;
-                        }
-                    } else {
-                        echo "Please upload an image file - jpeg, png, jpg";
-                        exit;
-                    }
-                }
-
-                $update_query .= " WHERE unique_id = '{$unique_id}'";
-                if(mysqli_query($conn, $update_query)){
-                    echo "Profile updated successfully!";
-                } else {
-                    echo "Something went wrong. Please try again!";
-                }
-            }
+            $update_query .= "email = '{$email}', ";
         } else {
             echo "$email is not a valid email!";
+            exit;
         }
+    }
+
+    if(!empty($profileName)) {
+        $update_query .= "ProfileName = '{$profileName}', ";
+    }
+
+    if(!empty($birthDate)) {
+        $update_query .= "BirthDate = '{$birthDate}', ";
+    }
+
+    if(!empty($phoneNumber)) {
+        $update_query .= "PhoneNumber = '{$phoneNumber}', ";
+    }
+
+    if(!empty($theme)) {
+        $update_query .= "theme = '{$theme}', ";
+    }
+
+    // Add password update if new password is provided and confirmed
+    if(!empty($new_password) && !empty($confirm_password)){
+        if($new_password === $confirm_password){
+            $encrypt_pass = password_hash($new_password, PASSWORD_DEFAULT);
+            $update_query .= "password = '{$encrypt_pass}', ";
+        } else {
+            echo "Passwords do not match!";
+            exit;
+        }
+    }
+
+    // Handle profile image update
+    if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
+        $img_name = $_FILES['image']['name'];
+        $img_tmp = $_FILES['image']['tmp_name'];
+
+        $img_path = "images/" . $img_name;
+
+        if(move_uploaded_file($img_tmp, $img_path)){
+            $update_query .= "img = '{$img_path}', ";
+        } else {
+            echo "Failed to upload image.";
+            exit;
+        }
+    }
+
+    // Remove trailing comma and space from update query
+    $update_query = rtrim($update_query, ", ");
+
+    // Add WHERE clause to update only for the current user
+    $update_query .= " WHERE unique_id = '{$unique_id}'";
+
+    // Execute the update query
+    if(mysqli_query($conn, $update_query)){
+        echo "Profile updated successfully!";
     } else {
-        echo "All input fields are required!";
+        echo "Something went wrong. Please try again!";
     }
 } else {
     header("location: login.php");
