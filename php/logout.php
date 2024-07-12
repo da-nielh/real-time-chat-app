@@ -7,7 +7,7 @@
             
             // Check if the logout_id matches the session unique_id for security
             if($logout_id == $_SESSION['unique_id']){
-                $status = "Offline";
+                $status = "last seen recently";
                 $sql = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id='{$logout_id}'");
                 if($sql){
                     session_unset();

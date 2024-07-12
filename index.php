@@ -7,6 +7,20 @@
 
 <?php include_once "header.php"; ?>
 <body>
+    <!-- Preloader -->
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="preloader__content text-center">
+                    <div class="preloader__logo chat_logo">
+                        <img src="./chatapp.png" alt="app logo" />
+                        <h1>Chat</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- logo section -->
     <div class="logo">
       <img src="./chatapp.png" alt="app logo" />
       <h1>Chat</h1>
@@ -83,6 +97,7 @@
       </section>
     </div>
 
+    <script src="javascript/themes.js"></script>
     <script src="javascript/pass-show-hide.js"></script>
     <script src="javascript/signup.js"></script>
   </body>

@@ -6,6 +6,52 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Preloader Styles */
+#loading {
+    position: fixed;
+    z-index: 99999;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+    background: #127369;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loading-center {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#loading-center-absolute {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.preloader__content {
+    text-align: center;
+}
+
+.preloader__logo {
+    width: 100px;
+    height: 100px;
+}
+
+.preloader__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preloader__logo h1 {
+    font-size: 45px;
+    color: #fff;
+}
+
 body {
     background-color: #127369;
     display: flex;
