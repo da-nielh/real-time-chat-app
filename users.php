@@ -47,7 +47,7 @@
 
   <!-- chat iframe section -->
   <div class="iframe-container">
-    <iframe id="contentFrame" src="start.html"></iframe>
+    <iframe id="contentFrame" src="chat_preloader.php"></iframe>
   </div>
 
   <script src="javascript/themes.js"></script>

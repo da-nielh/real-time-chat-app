@@ -20,11 +20,14 @@
           </div>
       </div>
     </div>
+
     <!-- logo section -->
     <div class="logo">
       <img src="./chatapp.png" alt="app logo" />
       <h1>Chat</h1>
     </div>
+
+    <!-- form section -->
     <div class="wrapper login_wrapper">
       <section class="form login">
         <div class="header login_header">
