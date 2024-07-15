@@ -5,101 +5,125 @@ include_once "config.php";
 if(isset($_SESSION['unique_id'])){
     $unique_id = $_SESSION['unique_id'];
 
-    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $profileName = mysqli_real_escape_string($conn, $_POST['profilename']);
-    $birthDate = mysqli_real_escape_string($conn, $_POST['birthdate']);
-    $phoneNumber = mysqli_real_escape_string($conn, $_POST['phonenumber']);
-    $theme = mysqli_real_escape_string($conn, $_POST['theme']);
-    $new_password = mysqli_real_escape_string($conn, $_POST['new_password']);
-    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
-    $current_password = mysqli_real_escape_string($conn, $_POST['current_password']);
+    $fname = isset($_POST['fname']) ? mysqli_real_escape_string($conn, $_POST['fname']) : '';
+    $lname = isset($_POST['lname']) ? mysqli_real_escape_string($conn, $_POST['lname']) : '';
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
+    $profileName = isset($_POST['profilename']) ? mysqli_real_escape_string($conn, $_POST['profilename']) : '';
+    $birthDate = isset($_POST['birthdate']) ? mysqli_real_escape_string($conn, $_POST['birthdate']) : '';
+    $phoneNumber = isset($_POST['phonenumber']) ? mysqli_real_escape_string($conn, $_POST['phonenumber']) : '';
+    $current_password = isset($_POST['current_password']) ? mysqli_real_escape_string($conn, $_POST['current_password']) : '';
+    $new_password = isset($_POST['new_password']) ? mysqli_real_escape_string($conn, $_POST['new_password']) : '';
+    $confirm_password = isset($_POST['confirm_password']) ? mysqli_real_escape_string($conn, $_POST['confirm_password']) : '';
 
-    // Check if current password matches with the stored password
-    $password_check_query = "SELECT * FROM users WHERE unique_id = '{$unique_id}'";
-    $result = mysqli_query($conn, $password_check_query);
+    $sql = "SELECT * FROM users WHERE unique_id = '{$unique_id}'";
+    $result = mysqli_query($conn, $sql);
     $user = mysqli_fetch_assoc($result);
-    $stored_password = $user['password'];
-    
-    if(!password_verify($current_password, $stored_password)) {
-        echo "Current password is incorrect.";
+
+    if(!$user) {
+        echo "User not found.";
         exit;
     }
 
-    // Build the update query dynamically based on provided data
+    if(!empty($current_password) && !password_verify($current_password, $user['password'])) {
+        $_SESSION['message'] = "Current password is incorrect.";
+        header("location: ../edit_profile.php");
+        exit;
+    }
+
     $update_query = "UPDATE users SET ";
+    $fields = [];
 
     if(!empty($fname)) {
-        $update_query .= "fname = '{$fname}', ";
+        $fields[] = "fname = '{$fname}'";
     }
-
     if(!empty($lname)) {
-        $update_query .= "lname = '{$lname}', ";
+        $fields[] = "lname = '{$lname}'";
     }
-
     if(!empty($email)) {
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $update_query .= "email = '{$email}', ";
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $email_check_query = "SELECT * FROM users WHERE email = '{$email}' AND unique_id != '{$unique_id}'";
+            $email_check_result = mysqli_query($conn, $email_check_query);
+            if(mysqli_num_rows($email_check_result) > 0) {
+                $_SESSION['message'] = "This email is already in use.";
+                header("location: ../edit_profile.php");
+                exit;
+            }
+            $fields[] = "email = '{$email}'";
         } else {
-            echo "$email is not a valid email!";
+            $_SESSION['message'] = "Invalid email format.";
+            header("location: ../edit_profile.php");
             exit;
         }
     }
-
     if(!empty($profileName)) {
-        $update_query .= "ProfileName = '{$profileName}', ";
+        $fields[] = "ProfileName = '{$profileName}'";
     }
-
     if(!empty($birthDate)) {
-        $update_query .= "BirthDate = '{$birthDate}', ";
+        $fields[] = "BirthDate = '{$birthDate}'";
     }
-
     if(!empty($phoneNumber)) {
-        $update_query .= "PhoneNumber = '{$phoneNumber}', ";
+        $fields[] = "PhoneNumber = '{$phoneNumber}'";
     }
 
-    if(!empty($theme)) {
-        $update_query .= "theme = '{$theme}', ";
-    }
-
-    // Add password update if new password is provided and confirmed
-    if(!empty($new_password) && !empty($confirm_password)){
-        if($new_password === $confirm_password){
-            $encrypt_pass = password_hash($new_password, PASSWORD_DEFAULT);
-            $update_query .= "password = '{$encrypt_pass}', ";
+    if(!empty($new_password) && !empty($confirm_password)) {
+        if($new_password === $confirm_password) {
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $fields[] = "password = '{$hashed_password}'";
         } else {
-            echo "Passwords do not match!";
+            $_SESSION['message'] = "New passwords do not match.";
+            header("location: ../edit_profile.php");
             exit;
         }
     }
 
-    // Handle profile image update
-    if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
+    if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
         $img_name = $_FILES['image']['name'];
-        $img_tmp = $_FILES['image']['tmp_name'];
+        $img_type = $_FILES['image']['type'];
+        $tmp_name = $_FILES['image']['tmp_name'];
 
-        $img_path = "images/" . $img_name;
+        $img_explode = explode('.', $img_name);
+        $img_ext = end($img_explode);
 
-        if(move_uploaded_file($img_tmp, $img_path)){
-            $update_query .= "img = '{$img_path}', ";
+        $extensions = ["jpeg", "png", "jpg"];
+        if(in_array($img_ext, $extensions)) {
+            $types = ["image/jpeg", "image/jpg", "image/png"];
+            if(in_array($img_type, $types)) {
+                $time = time();
+                $new_img_name = $time . $img_name;
+                if(move_uploaded_file($tmp_name, "images/" . $new_img_name)) {
+                    $fields[] = "img = '{$new_img_name}'";
+                } else {
+                    $_SESSION['message'] = "Failed to upload image.";
+                    header("location: ../edit_profile.php");
+                    exit;
+                }
+            } else {
+                $_SESSION['message'] = "Invalid image type.";
+                header("location: ../edit_profile.php");
+                exit;
+            }
         } else {
-            echo "Failed to upload image.";
+            $_SESSION['message'] = "Invalid image extension.";
+            header("location: ../edit_profile.php");
             exit;
         }
     }
 
-    // Remove trailing comma and space from update query
-    $update_query = rtrim($update_query, ", ");
-
-    // Add WHERE clause to update only for the current user
-    $update_query .= " WHERE unique_id = '{$unique_id}'";
-
-    // Execute the update query
-    if(mysqli_query($conn, $update_query)){
-        echo "Profile updated successfully!";
+    if(count($fields) > 0) {
+        $update_query .= implode(", ", $fields) . " WHERE unique_id = '{$unique_id}'";
+        if(mysqli_query($conn, $update_query)) {
+            $_SESSION['message'] = "Profile updated successfully.";
+            header("location: ../edit_profile.php");
+            exit;
+        } else {
+            $_SESSION['message'] = "Failed to update profile.";
+            header("location: ../edit_profile.php");
+            exit;
+        }
     } else {
-        echo "Something went wrong. Please try again!";
+        $_SESSION['message'] = "No changes made.";
+        header("location: ../edit_profile.php");
+        exit;
     }
 } else {
     header("location: login.php");
