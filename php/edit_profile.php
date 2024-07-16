@@ -20,10 +20,12 @@ if(isset($_SESSION['unique_id'])){
     $user = mysqli_fetch_assoc($result);
 
     if(!$user) {
-        echo "User not found.";
+        $_SESSION['message'] = "User not found.";
+        header("location: ../edit_profile.php");
         exit;
     }
 
+    // Check current password if provided
     if(!empty($current_password) && !password_verify($current_password, $user['password'])) {
         $_SESSION['message'] = "Current password is incorrect.";
         header("location: ../edit_profile.php");

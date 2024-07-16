@@ -264,19 +264,20 @@ body {
     color: #127369;
 }
 
-.users header {
-    padding-bottom: 30px;
-}
-
 .users header,
 .users-list a {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     /* border-bottom: 1px solid #e6e6e6; */
     justify-content: space-between;
     color: #fff !important;
+}
+
+.welcome-message h3 {
+    font-size: 18px;
+    color: #4C5958;
 }
 
 .wrapper img {

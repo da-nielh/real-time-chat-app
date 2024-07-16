@@ -6,6 +6,11 @@
   }
 
   $unique_id = $_SESSION['unique_id'];
+  
+  // Fetch the current user's details
+  $sql = mysqli_query($conn, "SELECT fname FROM users WHERE unique_id = '{$unique_id}'");
+  $row = mysqli_fetch_assoc($sql);
+  $user_name = $row['fname']; // or use 'fname' and 'lname' for full name
 ?>
 <?php include_once "header.php"; ?>
 <body>
@@ -35,6 +40,9 @@
         <h1>Chat</h1>
         <a href="edit_profile.php" class="settings-icon"><i class="fas fa-cog"></i></a>
       </header>
+      <div class="welcome-message">
+        <h3>Welcome: <?php echo $user_name; ?></h3>
+      </div>
       <div class="search">
           <input type="text" placeholder="Enter name to search..." />
           <a href="php/logout.php?logout_id=<?php echo $unique_id; ?>" class="logout">Logout</a>
