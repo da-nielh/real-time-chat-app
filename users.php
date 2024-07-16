@@ -2,7 +2,7 @@
   session_start();
   include_once "php/config.php";
   if(!isset($_SESSION['unique_id'])){
-    header("location: login.php");
+    header("location: index.php");
   }
 
   $unique_id = $_SESSION['unique_id'];

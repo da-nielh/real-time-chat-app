@@ -417,6 +417,189 @@ body {
 }
 
 
+/* edit-profile */
+
+.full_wrapper {
+    width: 100%;
+    background: #fff;
+    height: auto;
+    padding-bottom: 30px;
+}
+
+.profile_wrapper {
+    width: 85%;
+    min-height: 96vh;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alert {
+    color: #10403B;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: #8AA6A3;
+    border: 1px solid #178A7E;
+    margin-bottom: 10px;
+}
+
+.edit-profile header {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0 10px 0;
+
+    h1 {
+        font-size: 38px;
+        color: #127369;
+    }
+
+    span {
+        color: #4C5958;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .fas {
+        font-size: 24px;
+    }
+}
+
+.edit-profile {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #10403B;
+
+    .header {
+        padding-bottom: 10px;
+        width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .change_pass {
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        label {
+            margin-right: 30px;
+        }
+    }
+
+    .passwords :first-child {
+        margin-top: 8px;
+    }
+
+    form {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 100px;
+
+        img {
+            width: 55%;
+            margin-bottom: 2%;
+        }
+
+        .user_name {
+            margin-bottom: 3%;
+            h3 {
+                font-weight: 500;
+            }
+        }
+    }
+
+    form .error-text {
+        color: #721c24;
+        padding: 8px 10px;
+        text-align: center;
+        border-radius: 5px;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        margin-bottom: 10px;
+        display: none;
+    }
+
+    form .name-details {
+        display: flex;
+        gap: 15px;
+    }
+
+    .name-details .field:first-child {
+        margin-right: 10px;
+    }
+
+    .name-details .field:last-child {
+        margin-left: 10px;
+    }
+
+    form .field {
+        display: flex;
+        margin-bottom: 20px;
+        flex-direction: column;
+        position: relative;
+    }
+
+    form .field label {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    form .input input {
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid #8AA6A3;
+    }
+
+    form .field input {
+        outline: none;
+    }
+
+    form .image input {
+        font-size: 17px;
+    }
+
+    form .button {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    form .button input {
+        height: 45px;
+        width: 100%;
+        border: none;
+        color: #fff;
+        font-size: 17px;
+        background: #127369;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 13px;
+    }
+
+    .field .image input {
+        background: #8AA6A3;
+    }
+
+    .link {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 17px;
+    }
+
+    .link a {
+        color: #127369;
+    }
+
+    .link a:hover {
+        text-decoration: underline;
+    }
+}
+
+
 
 
 /* chat_content */
@@ -506,15 +689,15 @@ iframe {
     a {
         text-decoration: none;
     }
+}
 
-    .fas {
-        color: #127369;
-        display: none;
-    }
+.fas {
+    color: #8AA6A3;
+    display: none;
+}
 
-    .fas:hover {
-        color: #10403B;
-    }
+.fas:hover {
+    color: #127369;
 }
 
 .chat-area header {
@@ -701,6 +884,12 @@ iframe {
     .chating .header {
         .fas {
             display: block;
+        }
+    }
+
+    .edit-profile {
+        form {
+            display: block !important;
         }
     }
 

@@ -7,8 +7,7 @@
         </div>
         <h3>Welcome to Chat App</h3>
         <p>
-          Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. cum sociisnatoque penatibus et
+          Messages are securely encrypted end-to-end, ensuring that only authorized participants within this chat can access its contents.
         </p>
         <div class="start_button">
           <button>Get Start</button>

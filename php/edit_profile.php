@@ -50,7 +50,7 @@ if(isset($_SESSION['unique_id'])){
             }
             $fields[] = "email = '{$email}'";
         } else {
-            $_SESSION['message'] = "Invalid email format.";
+            $_SESSION['message'] = "Invalid email format";
             header("location: ../edit_profile.php");
             exit;
         }
@@ -70,7 +70,7 @@ if(isset($_SESSION['unique_id'])){
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
             $fields[] = "password = '{$hashed_password}'";
         } else {
-            $_SESSION['message'] = "New passwords do not match.";
+            $_SESSION['message'] = "New passwords do not match";
             header("location: ../edit_profile.php");
             exit;
         }
@@ -93,17 +93,17 @@ if(isset($_SESSION['unique_id'])){
                 if(move_uploaded_file($tmp_name, "images/" . $new_img_name)) {
                     $fields[] = "img = '{$new_img_name}'";
                 } else {
-                    $_SESSION['message'] = "Failed to upload image.";
+                    $_SESSION['message'] = "Failed to upload image";
                     header("location: ../edit_profile.php");
                     exit;
                 }
             } else {
-                $_SESSION['message'] = "Invalid image type.";
+                $_SESSION['message'] = "Invalid image type";
                 header("location: ../edit_profile.php");
                 exit;
             }
         } else {
-            $_SESSION['message'] = "Invalid image extension.";
+            $_SESSION['message'] = "Invalid image extension";
             header("location: ../edit_profile.php");
             exit;
         }
@@ -112,16 +112,16 @@ if(isset($_SESSION['unique_id'])){
     if(count($fields) > 0) {
         $update_query .= implode(", ", $fields) . " WHERE unique_id = '{$unique_id}'";
         if(mysqli_query($conn, $update_query)) {
-            $_SESSION['message'] = "Profile updated successfully.";
+            $_SESSION['message'] = "Profile updated successfully";
             header("location: ../edit_profile.php");
             exit;
         } else {
-            $_SESSION['message'] = "Failed to update profile.";
+            $_SESSION['message'] = "Failed to update profile";
             header("location: ../edit_profile.php");
             exit;
         }
     } else {
-        $_SESSION['message'] = "No changes made.";
+        $_SESSION['message'] = "No changes made";
         header("location: ../edit_profile.php");
         exit;
     }

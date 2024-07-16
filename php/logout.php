@@ -12,7 +12,7 @@
                 if($sql){
                     session_unset();
                     session_destroy();
-                    header("location: ../login.php");
+                    header("location: ../index.php");
                     exit();
                 } else {
                     echo "Error updating status. Please try again.";
@@ -25,7 +25,7 @@
             exit();
         }
     }else{  
-        header("location: ../login.php");
+        header("location: ../index.php");
         exit();
     }
 ?>
