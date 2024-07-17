@@ -69,7 +69,7 @@ if (!isset($_SESSION['unique_id'])) {
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Type your message here..." autocomplete="off">
         <label for="file-upload" class="custom-file-upload"><i class="fa fa-paperclip" style="font-size:24px"></i></label>
-        <input type="file" name="image" class="image-input" id="file-upload">
+        <input type="file" name="image" class="file-uploadd">
         <button><i class="fab fa-telegram-plane"></i></button>
     </form>
 

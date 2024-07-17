@@ -873,7 +873,7 @@ iframe {
     margin-top: 10px;
 }
 
-input[type="file"] {
+.file-uploadd {
     display: none;
 }
 
