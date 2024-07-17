@@ -5,7 +5,6 @@ if (isset($_SESSION['unique_id'])) {
     $outgoing_id = $_SESSION['unique_id'];
     $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
     $output = "";
-    $mess = "";
 
     function str_openssl_dec($str, $iv) {
         $key = '1234567890vishal%$%^%$$#$#';
@@ -22,32 +21,34 @@ if (isset($_SESSION['unique_id'])) {
             OR (outgoing_msg_id = {$incoming_id} AND incoming_msg_id = {$outgoing_id}) 
             ORDER BY messages.msg_id";
     $query = mysqli_query($conn, $sql);
-    
+
     if (mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_assoc($query)) {
             $iv = hex2bin($row['iv']);
             $mess = str_openssl_dec($row['msg'], $iv);
-            
+
             if ($row['outgoing_msg_id'] === $outgoing_id) {
                 // Outgoing message
                 $output .= '<div class="chat outgoing">
                                 <div class="details">';
                 if (!empty($row['image_url'])) {
-                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image">';
-                } else {
+                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image" class="msgimg">';
+                }
+                if (!empty($mess)) {
                     $output .= '<p>' . $mess . '</p>';
                 }
                 $output .= '</div>
-                            <img src="php/images/' . $row['user_img'] . '" alt="">
+                            <img src="php/images/' . $row['user_img'] . '" alt="" class="userimg">
                             </div>';
             } else {
                 // Incoming message
                 $output .= '<div class="chat incoming">
-                                <img src="php/images/' . $row['user_img'] . '" alt="">
+                                <img src="php/images/' . $row['user_img'] . '" alt="" class="userimg">
                                 <div class="details">';
                 if (!empty($row['image_url'])) {
-                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image">';
-                } else {
+                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image" class="msgimg">';
+                }
+                if (!empty($mess)) {
                     $output .= '<p>' . $mess . '</p>';
                 }
                 $output .= '</div>

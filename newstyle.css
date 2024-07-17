@@ -615,12 +615,6 @@ iframe {
     border: none;
 }
 
-.chat-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 10px;
-}
 
 .file_select {
     width: 10%;
@@ -802,19 +796,33 @@ iframe {
     align-items: flex-end;
 }
 
-.chat-box .incoming img {
+.chat-box .incoming .userimg {
     height: 35px;
     width: 35px;
 }
 
-.chat-box .outgoing img {
+.chat-box .outgoing .userimg {
     height: 35px;
     width: 35px;
+}
+
+.chat-box .incoming img {
+    height: 35%;
+    width: 35%;
+}
+
+.chat-box .outgoing img {
+    height: 35%;
+    width: 35%;
 }
 
 .chat-box .outgoing {
     display: flex;
     align-items: flex-end;
+}
+
+.chat-box .outgoing img {
+    margin-right: 0;
 }
 
 .chat-box .incoming .details {
@@ -827,6 +835,12 @@ iframe {
     margin-right: auto;
     margin-right: 10px;
     max-width: calc(100% - 130px);
+}
+
+.chat-box .outgoing .details .msgimg {
+    margin-right: auto;
+    margin-left: 65%;
+    /* max-width: calc(100% - 130px); */
 }
 
 .incoming .details p {
@@ -851,6 +865,28 @@ iframe {
     border-radius: 5px 0 0 5px;
 }
 
+.image-input {
+    height: 45px;
+    width: auto !important;
+    padding: 0 !important;
+    border: none !important;
+    margin-top: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    /* border: 1px solid #ccc; */
+    display: inline-block;
+    padding: 10px 10px;
+    cursor: pointer;
+    i {
+        color: #4C5958;
+    }
+}
+
 .typing-area input:focus {
     border: 1px solid var(--pink-color);
 }
@@ -861,24 +897,25 @@ iframe {
     border: none;
     outline: none;
     background: var(--pink-color);
+    /* Define this variable if not defined */
     font-size: 26px;
     cursor: pointer;
     opacity: 0.7;
     pointer-events: none;
     border-radius: 0 5px 5px 0;
     transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 100;
 }
 
 .typing-area button:hover {
     background: var(--pink-dark);
+    /* Define this variable if not defined */
 }
 
 .typing-area button.active {
     opacity: 1;
     pointer-events: auto;
 }
+
 
 
 
@@ -939,5 +976,17 @@ iframe {
         max-width: 100%;
         width: 100%;
         border-radius: 0px;
+    }
+}
+.chat-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .chat-image {
+        max-width: 100%;
     }
 }
