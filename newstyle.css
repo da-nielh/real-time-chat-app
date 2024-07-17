@@ -802,14 +802,24 @@ iframe {
     align-items: flex-end;
 }
 
-.chat-box .incoming img {
+.chat-box .incoming .userimg {
     height: 35px;
     width: 35px;
 }
 
-.chat-box .outgoing img {
+.chat-box .outgoing .userimg {
     height: 35px;
     width: 35px;
+}
+
+.chat-box .incoming img {
+    height: 35%;
+    width: 35%;
+}
+
+.chat-box .outgoing img {
+    height: 35%;
+    width: 35%;
 }
 
 .chat-box .outgoing {
@@ -827,6 +837,11 @@ iframe {
     margin-right: auto;
     margin-right: 10px;
     max-width: calc(100% - 130px);
+}
+
+.chat-box .outgoing .details .msgimg {
+    margin-right: auto;
+    margin-left: 65%;
 }
 
 .incoming .details p {
@@ -880,7 +895,17 @@ iframe {
     pointer-events: auto;
 }
 
+#file-upload {
+    display: none;
+}
 
+.custom-file-upload {
+    padding: 10px 10px;
+}
+
+.custom-file-upload i {
+    color: #4C5958;
+}
 
 @media (max-width: 968px) {
     .chat_content {

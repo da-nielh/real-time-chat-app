@@ -33,20 +33,20 @@ if (isset($_SESSION['unique_id'])) {
                 $output .= '<div class="chat outgoing">
                                 <div class="details">';
                 if (!empty($row['image_url'])) {
-                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image">';
+                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image" class="msgimg">';
                 } else {
                     $output .= '<p>' . $mess . '</p>';
                 }
                 $output .= '</div>
-                            <img src="php/images/' . $row['user_img'] . '" alt="">
+                            <img src="php/images/' . $row['user_img'] . '" alt="" class="userimg">
                             </div>';
             } else {
                 // Incoming message
                 $output .= '<div class="chat incoming">
-                                <img src="php/images/' . $row['user_img'] . '" alt="">
+                                <img src="php/images/' . $row['user_img'] . '" alt="" class="userimg">
                                 <div class="details">';
                 if (!empty($row['image_url'])) {
-                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image">';
+                    $output .= '<img src="php/images/' . $row['image_url'] . '" alt="Image"  class="msgimg">';
                 } else {
                     $output .= '<p>' . $mess . '</p>';
                 }

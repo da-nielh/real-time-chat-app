@@ -68,7 +68,8 @@ if (!isset($_SESSION['unique_id'])) {
       <form action="php/insert-chat.php" method="POST" class="typing-area" enctype="multipart/form-data">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Type your message here..." autocomplete="off">
-        <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" class="file_select">
+        <label for="file-upload" class="custom-file-upload"><i class="fa fa-paperclip" style="font-size:24px"></i></label>
+        <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" class="file-input" id="file-upload">
         <button type="submit"><i class="fab fa-telegram-plane"></i></button>
       </form>
     </section>
