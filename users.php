@@ -8,9 +8,9 @@
   $unique_id = $_SESSION['unique_id'];
   
   // Fetch the current user's details
-  $sql = mysqli_query($conn, "SELECT fname FROM users WHERE unique_id = '{$unique_id}'");
+  $sql = mysqli_query($conn, "SELECT ProfileName FROM users WHERE unique_id = '{$unique_id}'");
   $row = mysqli_fetch_assoc($sql);
-  $user_name = $row['fname']; // or use 'fname' and 'lname' for full name
+  $user_name = $row['ProfileName'];
 ?>
 <?php include_once "header.php"; ?>
 <body>
