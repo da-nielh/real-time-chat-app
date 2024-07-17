@@ -28,11 +28,34 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `messages` (
-  `msg_id` int(11) NOT NULL,
+  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
   `incoming_msg_id` int(255) NOT NULL,
   `outgoing_msg_id` int(255) NOT NULL,
   `msg` varchar(1000) NOT NULL,
-  `iv` text NOT NULL
+  `iv` text NOT NULL,
+  `time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`msg_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
+
+CREATE TABLE `message_images` (
+  `msg_id` int(11) NOT NULL,
+  `image_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`msg_id`),
+  CONSTRAINT `fk_message_images_msg_id` FOREIGN KEY (`msg_id`) REFERENCES `messages` (`msg_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `message_videos` (
+  `msg_id` int(11) NOT NULL,
+  `video_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`msg_id`),
+  CONSTRAINT `fk_message_videos_msg_id` FOREIGN KEY (`msg_id`) REFERENCES `messages` (`msg_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `message_files` (
+  `msg_id` int(11) NOT NULL,
+  `file_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`msg_id`),
+  CONSTRAINT `fk_message_files_msg_id` FOREIGN KEY (`msg_id`) REFERENCES `messages` (`msg_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
