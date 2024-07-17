@@ -615,6 +615,17 @@ iframe {
     border: none;
 }
 
+.chat-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.file_select {
+    width: 10%;
+}
+
 .chat_content {
     background-color: #9AB8B5;
     width: 100%;
