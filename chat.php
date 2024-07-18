@@ -1,9 +1,16 @@
 <?php
-session_start();
-include_once "php/config.php";
-if (!isset($_SESSION['unique_id'])) {
-  header("location: index.php");
-}
+  session_start();
+  include_once "php/config.php";
+  if (!isset($_SESSION['unique_id'])) {
+    header("location: index.php");
+  }
+  
+  $unique_id = $_SESSION['unique_id'];
+  
+  // Fetch the current user's details
+  $sql = mysqli_query($conn, "SELECT ProfileName FROM users WHERE unique_id = '{$unique_id}'");
+  $row = mysqli_fetch_assoc($sql);
+  $user_name = $row['ProfileName'];
 ?>
 <?php include_once "header.php"; ?>
 
@@ -20,14 +27,14 @@ if (!isset($_SESSION['unique_id'])) {
         <h1>Chat</h1>
         <a href="edit_profile.php" class="settings-icon"><i class="fas fa-cog"></i></a>
       </header>
-      <div class="chat_search">
-        <div class="search">
+      <div class="welcome-message">
+        <h3>Welcome: <?php echo $user_name; ?></h3>
+      </div>
+      <div class="search">
           <input type="text" placeholder="Enter name to search..." />
-          <a href="php/logout.php?logout_id=<?php echo $unique_id; ?>" class="logout" >Logout</a>
+          <a href="php/logout.php?logout_id=<?php echo $unique_id; ?>" class="logout">Logout</a>
           <button><i class="fas fa-search"></i></button>
       </div>
-      </div>
-      
       <div class="users-list">
       </div>
     </section>
@@ -54,17 +61,12 @@ if (!isset($_SESSION['unique_id'])) {
             <p><?php echo $row['status']; ?></p>
           </div>
           <div class="right_header">
-            <a href="users.php"><i class='fas fa-user-friends' style='font-size:36px'></i></a>
+            <a href=""><i class="fa fa-ellipsis-h" style="font-size:24px"></i></i></a>
           </div>
         </div>
       </header>
       <div class="chat-box">
       </div>
-      <!-- <form action="#" class="typing-area">
-        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
-        <input type="text" name="message" class="input-field" placeholder="Type your message here..." autocomplete="off">
-        <button><i class="fab fa-telegram-plane"></i></button>
-      </form> -->
       <form action="php/insert-chat.php" method="POST" class="typing-area" enctype="multipart/form-data">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Type your message here..." autocomplete="off">
