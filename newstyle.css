@@ -883,7 +883,7 @@ iframe {
 }
 
 .file-uploadd {
-    /* display: none; */
+    display: none;
 }
 
 .custom-file-upload {
@@ -950,7 +950,11 @@ iframe {
 
     .chating .header {
         .fas {
+            color: #7ea5a2;
             display: block;
+        }
+        .fas:hover {
+            color: #127369;
         }
     }
 

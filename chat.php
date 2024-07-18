@@ -63,7 +63,7 @@ if (!isset($_SESSION['unique_id'])) {
             <p><?php echo $row['status']; ?></p>
           </div>
           <div class="right_header">
-            <a href=""><i class="fa fa-ellipsis-h" style="font-size:24px"></i></a>
+            <a href=""><i class="fas fa-ellipsis-h" style="font-size:24px"></i></a>
           </div>
         </div>
       </header>
