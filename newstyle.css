@@ -697,6 +697,29 @@ iframe {
     }
 }
 
+/* Add this CSS inside your stylesheet */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    margin-left: -100px;
+    background-color: #178A7E;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #71a5a1;
+}
+
 .fas {
     color: #8AA6A3;
     display: none;

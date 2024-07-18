@@ -63,7 +63,10 @@ if (!isset($_SESSION['unique_id'])) {
             <p><?php echo $row['status']; ?></p>
           </div>
           <div class="right_header">
-            <a href=""><i class="fas fa-ellipsis-h" style="font-size:24px"></i></a>
+            <a href="#" id="dropdownToggle"><i class="fas fa-ellipsis-h" style="font-size:24px"></i></a>
+            <div id="dropdownMenu" class="dropdown-menu">
+              <a href="#" class="delete-option">Delete all Chat</a>
+            </div>
           </div>
         </div>
       </header>
@@ -82,7 +85,7 @@ if (!isset($_SESSION['unique_id'])) {
   <script src="javascript/themes.js"></script>
   <script src="javascript/users.js"></script>
   <script src="javascript/chat.js"></script>
-
+  
 </body>
 
 </html>
