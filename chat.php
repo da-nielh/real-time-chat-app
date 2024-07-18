@@ -1,10 +1,11 @@
 <?php
-  session_start();
-  include_once "php/config.php";
-  if (!isset($_SESSION['unique_id'])) {
-    header("location: index.php");
-  }
-  
+session_start();
+include_once "php/config.php";
+if (!isset($_SESSION['unique_id'])) {
+  header("location: index.php");
+  exit;
+}
+
   $unique_id = $_SESSION['unique_id'];
   
   // Fetch the current user's details
@@ -51,6 +52,7 @@
           $row = mysqli_fetch_assoc($sql);
         } else {
           header("location: users.php");
+          exit;
         }
         ?>
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
@@ -61,7 +63,7 @@
             <p><?php echo $row['status']; ?></p>
           </div>
           <div class="right_header">
-            <a href=""><i class="fa fa-ellipsis-h" style="font-size:24px"></i></i></a>
+            <a href=""><i class="fa fa-ellipsis-h" style="font-size:24px"></i></a>
           </div>
         </div>
       </header>
