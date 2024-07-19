@@ -905,7 +905,7 @@ iframe {
     margin-top: 10px;
 }
 
-.file-uploadd {
+input[type="file"] {
     display: none;
 }
 
@@ -917,6 +917,17 @@ iframe {
     i {
         color: #4C5958;
     }
+}
+
+#file-name-display {
+    position: absolute;
+    margin-left: 10px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    background: #fff;
+    padding: 5px 100px;
+    margin-top: 5px;
 }
 
 .typing-area input:focus {
@@ -960,7 +971,15 @@ iframe {
     color: #4C5958;
 }
 
+@media (max-width: 1141px) {
+    .user_logo {
+        display: none;
+    }
+}
+
 @media (max-width: 968px) {
+    
+
     .chat_content {
         display: none;
     }

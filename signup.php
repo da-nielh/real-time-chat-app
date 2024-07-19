@@ -79,8 +79,12 @@
             <i class="fas fa-eye"></i>
           </div>
           <div class="field image">
-            <label>Select Image</label>
-            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required />
+              <label>Select Image</label>
+              <label for="file-upload" class="custom-file-upload">
+                  <span id="file-chosen" style="color: #8AA6A3">No file chosen</span>
+                  <i class="fa fa-paperclip" style="font-size:24px"></i>
+              </label>
+              <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" id="file-upload" required />
           </div>
           <div class="field button">
             <input type="submit" name="submit" value="Sign up" />
@@ -95,6 +99,12 @@
     <script src="javascript/themes.js"></script>
     <script src="javascript/pass-show-hide.js"></script>
     <script src="javascript/signup.js"></script>
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function() {
+            const fileChosen = document.getElementById('file-chosen');
+            fileChosen.textContent = this.files[0].name;
+        });
+    </script>
 
   </body>
 </html>

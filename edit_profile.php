@@ -47,7 +47,10 @@ if(isset($_SESSION['message'])){
                                     <span><?php echo $row['lname']; ?></span>
                                 </h3>
                             </div>
-                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                            <label for="file-upload" class="custom-file-upload">
+                                <span id="file-chosen" style="color: #8AA6A3">No file chosen</span>
+                            </label>
+                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" id="file-upload">
                         </div>
                     </div>
                     <div class="right_edit_rapper">
@@ -130,6 +133,12 @@ if(isset($_SESSION['message'])){
                 }, 3000);
             }
         }
+    </script>
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function() {
+            const fileChosen = document.getElementById('file-chosen');
+            fileChosen.textContent = this.files[0].name;
+        });
     </script>
 </body>
 </html>
