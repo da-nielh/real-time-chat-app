@@ -20,6 +20,14 @@ This project is a real-time chat web application that I initially found as a sou
 - **Front-End Development**: I updated the front-end of the application on my own, which helped me practice and enhance my skills in HTML, CSS, and JavaScript.
 - **New Functionality**: I worked with ChatGPT to add new features such as admin functionality, user blocking, and chat management.
 
+## Design of The Project
+
+- ![](<ui/Screenshot%20(264).png>)
+- ![](<ui/Screenshot%20(265).png>)
+- ![](<ui/Screenshot%20(266).png>)
+- ![](<ui/Screenshot%20(267).png>)
+- ![](<ui/Screenshot%20(268).png>)
+
 ## How the Project Works
 
 ### 1. User Registration and Login
@@ -152,6 +160,4 @@ Feel free to explore the project and contribute to its improvement. Thank you fo
 
 ---
 
-Daniel H.
-
-da-nielh
+Daniel H. / da-nielh
